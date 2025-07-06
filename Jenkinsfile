@@ -97,23 +97,5 @@ pipeline {
         */
     }
 
-    post {
-        success {
-            emailext(
-                body: '''${SCRIPT, template="groovy-html.template"}''',
-                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - SUCCESSFUL",
-                mimeType: 'text/html',
-                to: "ashfaque.s510@gmail.com"
-            )
-        }
-
-        failure {
-            emailext(
-                body: '''${SCRIPT, template="groovy-html.template"}''',
-                subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - FAILED",
-                mimeType: 'text/html',
-                to: "ashfaque.s510@gmail.com"
-            )
-        }
     }
 }
