@@ -7,8 +7,8 @@ pipeline {
     environment {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
-            DOCKER_USER = "sagarkulkarni1989"
-            DOCKER_PASS = 'dockerhub'
+            DOCKER_USER = "umamahesh445"
+            DOCKER_PASS = 'Bunny@123'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
@@ -22,7 +22,7 @@ pipeline {
 
         stage("Checkout from SCM"){
                 steps {
-                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/sagarkulkarni1989/register-app'
+                    git branch: 'main', credentialsId: 'github', url: 'https://github.com/umamahesh775/register-app'
                 }
         }
 
