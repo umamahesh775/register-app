@@ -80,22 +80,5 @@ pipeline {
                 sh "docker rmi ${IMAGE_NAME}:latest || true"
             }
         }
-
-        // Optional: Uncomment to trigger downstream CD pipeline
-        /*
-        stage("Trigger CD Pipeline") {
-            steps {
-                sh """
-                    curl -v -k --user admin:${JENKINS_API_TOKEN} \
-                    -X POST -H 'cache-control: no-cache' \
-                    -H 'content-type: application/x-www-form-urlencoded' \
-                    --data 'IMAGE_TAG=${IMAGE_TAG}' \
-                    'http://ec2-13-233-42-35.ap-south-1.compute.amazonaws.com:8080/job/gitops-register-app-cd/buildWithParameters?token=gitops-token'
-                """
-            }
-        }
-        */
-    }
-
     }
 }
