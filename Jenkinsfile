@@ -1,10 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8.6-openjdk-17'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
     environment {
         REGISTRY = "docker.io"
         IMAGE_NAME = "umamahesh445/register-app"
-        SONARQUBE_ENV = "sonarqube-server" // Adjust to your configured SonarQube name
+        SONARQUBE_ENV = "sonarqube-server"
     }
 
     stages {
@@ -23,7 +28,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             environment {
-                scannerHome = tool 'sonar-scanner' // Tool configured in Jenkins
+                scannerHome = tool 'sonar-scanner'
             }
             steps {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
